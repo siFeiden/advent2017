@@ -1,6 +1,15 @@
 import enum
 import sys
 
+INVALID_DAY = -1
+
+
+class Command(enum.Enum):
+  Overview = 'overview'
+  Show = 'show'
+  Check = 'check'
+
+
 class Overview(object):
   def __init__(self):
     pass
@@ -31,18 +40,24 @@ def check_day(day):
 def parse_args(args):
   nargs = len(args)
   if nargs <= 1:
-    raise InvalidArgs()
+    return INVALID_DAY, Command.Overview
 
   if nargs == 2:
     try:
       day = int(args[1])
-      cmd = 'show'
+      cmd = Command.Show
     except ValueError:
-      day = today()
-      cmd = args[1]
+      day = dates.today()
+      try:
+        cmd = Command(args[1])
+      except:
+        raise InvalidArgs()
   
   if nargs == 3:
-    cmd = args[1]
+    try:
+      cmd = Command(args[1])
+    except:
+      raise InvalidArgs()
     try:
       day = int(args[2])
     except ValueError:
@@ -56,16 +71,13 @@ def parse_args(args):
 if __name__ == '__main__':
   try:
     day, cmd = parse_args(sys.argv)
-    print('day', day)
-    print('cmd', cmd)
 
-    """
-    door = doors[day]
-    if cmd == 'show':
-      door.show()
-    elif cmd == 'check':
-      door.check()
-    """
+    if cmd == Command.Overview:
+      overview.show()
+    elif cmd == Command.Show:
+      pass
+    elif cmd == Command.Check:
+      pass
   except InvalidArgs:
     print('usage')
   except DayCheckFailed:
