@@ -1,6 +1,9 @@
 import enum
 import sys
 
+from advent import dates
+
+
 INVALID_DAY = -1
 
 
@@ -29,13 +32,6 @@ class InvalidArgs(Exception):
 class DayCheckFailed(Exception):
   pass
 
-def today():
-  # TODO: check for December
-  return 8
-
-def check_day(day):
-  return day <= today()
-
 
 def parse_args(args):
   nargs = len(args)
@@ -63,7 +59,7 @@ def parse_args(args):
     except ValueError:
       raise InvalidArgs()
     
-  if not check_day(day):
+  if not dates.check_day(day):
     raise DayCheckFailed()
 
   return day, cmd
