@@ -11,7 +11,7 @@ INVALID_DAY = -1
 class Command(enum.Enum):
   Overview = 'overview'
   Show = 'show'
-  Check = 'check'
+  Test = 'test'
 
 
 class Overview(object):
@@ -22,7 +22,7 @@ class Show(object):
   def __init__(self, day):
     pass
 
-class Check(object):
+class Test(object):
   def __init__(self, day):
     pass
 
@@ -73,7 +73,7 @@ if __name__ == '__main__':
       overview.show()
     elif cmd == Command.Show:
       pass
-    elif cmd == Command.Check:
+    elif cmd == Command.Test:
       pass
   except InvalidArgs:
     print('usage')
