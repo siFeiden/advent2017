@@ -11,7 +11,8 @@ def show():
   with open('tree') as f:
     today = dates.today()
 
-    window_width = int(os.environ['COLUMNS'])
+    row, cols = os.popen('stty size', 'r').read().split()
+    window_width = int(cols)
     title_width = window_width - TREE_WIDTH - 2*TREE_PADDING
 
     for day, line in enumerate(f, start=1):
