@@ -53,15 +53,9 @@ def parse_args(args):
   if nargs == 3:
     try:
       cmd = Command(args[1])
+      day = int(args[2])
     except:
       raise InvalidArgs()
-    try:
-      day = int(args[2])
-    except ValueError:
-      raise InvalidArgs()
-    
-  if not dates.check_day(day):
-    raise DayCheckFailed()
 
   return day, cmd
 
