@@ -1,8 +1,9 @@
 import enum
 import sys
 
-from advent import overview
 from advent import dates
+from advent import overview
+from advent import show
 
 
 INVALID_DAY = -1
@@ -66,7 +67,7 @@ if __name__ == '__main__':
     if cmd == Command.Overview:
       overview.show()
     elif cmd == Command.Show:
-      pass
+      show.present(day)
     elif cmd == Command.Test:
       pass
   except InvalidArgs:
