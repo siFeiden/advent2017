@@ -1,11 +1,9 @@
 from advent.door import Door
-from advent.doorio import CopyDoorFile
 
 
 def present(day):
-  CopyDoorFile(day).copy()
-
   door = Door.for_day(day)
+  door.copy_door_file()
 
   print(door.title)
   print()

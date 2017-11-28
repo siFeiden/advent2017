@@ -1,4 +1,4 @@
-from advent.doorio import DoorSuccessReader, DoorTemplateModuleLoader
+from advent.doorio import DoorSuccessReader, DoorTemplateModuleLoader, CopyDoorFile
 
 
 class DoorInfoSplit(object):
@@ -18,6 +18,9 @@ class Door(object):
     self.day = day
     self.title, self.description = DoorInfoSplit(module.__doc__.strip()).split_title_description()
     self.done = DoorSuccessReader(day).read()
+
+  def copy_door_file(self):
+    CopyDoorFile(self.day).copy()
 
   @staticmethod
   def for_day(day):
