@@ -57,29 +57,36 @@ class DoorSuccessUpdate(object):
 
 
 class DoorModuleLoader(object):
-  def __init__(self, day, base_path):
+  MODULE_NAME_PATTERN = 'door{}'
+  SUBDIR = TEMPLATES_BASE_PATH
+
+  def __init__(self, day):
     self.day = day
-    self.base_path = base_path
 
   def load(self):
     try:
-      module_name = 'door{}'.format(self.day)
-      file_name = path.join(self.base_path, module_name + '.py')
+      module_name = self.MODULE_NAME_PATTERN.format(self.day)
+      file_name = path.join(self.SUBDIR, module_name + '.py')
 
       spec = importlib.util.spec_from_file_location(module_name, file_name)
       mod = importlib.util.module_from_spec(spec)
       spec.loader.exec_module(mod)
       return mod
-    except:
+    except Exception as e:
       return None
 
 
 class DoorTemplateModuleLoader(DoorModuleLoader):
-  def __init__(self, day):
-    super().__init__(day, TEMPLATES_BASE_PATH)
+  MODULE_NAME_PATTERN = 'door{}'
+  SUBDIR = TEMPLATES_BASE_PATH
 
 
 class DoorSolutionModuleLoader(DoorModuleLoader):
-  def __init__(self, day):
-    super().__init__(day, BASE_PATH)
+  MODULE_NAME_PATTERN = 'tuerchen{}'
+  SUBDIR = BASE_PATH
+
+
+class DoorTesterModuleLoader(DoorModuleLoader):
+  MODULE_NAME_PATTERN = 'test{}'
+  SUBDIR = TEMPLATES_BASE_PATH
 
