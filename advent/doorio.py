@@ -62,13 +62,16 @@ class DoorModuleLoader(object):
     self.base_path = base_path
 
   def load(self):
-    module_name = 'door{}'.format(self.day)
-    file_name = path.join(self.base_path, module_name + '.py')
+    try:
+      module_name = 'door{}'.format(self.day)
+      file_name = path.join(self.base_path, module_name + '.py')
 
-    spec = importlib.util.spec_from_file_location(module_name, file_name)
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
+      spec = importlib.util.spec_from_file_location(module_name, file_name)
+      mod = importlib.util.module_from_spec(spec)
+      spec.loader.exec_module(mod)
+      return mod
+    except:
+      return None
 
 
 class DoorTemplateModuleLoader(DoorModuleLoader):
