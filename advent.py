@@ -4,6 +4,7 @@ import sys
 from advent import dates
 from advent import overview
 from advent import show
+from advent import test
 
 
 INVALID_DAY = -1
@@ -69,7 +70,7 @@ if __name__ == '__main__':
     elif cmd == Command.Show:
       show.present(day)
     elif cmd == Command.Test:
-      pass
+      test.test(day)
   except InvalidArgs:
     print('usage')
   except DayCheckFailed:
