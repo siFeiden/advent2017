@@ -48,6 +48,10 @@ class Door(object):
     self.template.copy_to(self.solution)
     return self.solution
 
+  def reset(self):
+    self.template.copy_to(self.solution, overwrite=True)
+    return self.solution
+
   @staticmethod
   def for_day(day):
     return Door(day)

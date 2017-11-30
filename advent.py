@@ -17,6 +17,7 @@ class Command(enum.Enum):
   Show = 'show'
   Test = 'test'
   Update = 'update'
+  Reset = 'reset'
 
 
 class Overview(object):
@@ -80,6 +81,11 @@ def main():
       test.test(door)
     elif cmd == Command.Update:
       update.load()
+    elif cmd == Command.Reset:
+      where = door.reset()
+      print('Türchen {} wiederhergestellt!'.format(day))
+      print('Das Türchen findest du wie vorher unter {} :)'.format(where.file_path))
+
   except InvalidArgs:
     print('usage')
   except DayCheckFailed:
