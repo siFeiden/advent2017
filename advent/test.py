@@ -1,6 +1,6 @@
 import random
 
-from advent.doorio import DoorSuccessUpdate, DoorSolutionModuleLoader, DoorTesterModuleLoader
+from advent.doorio import DoorSuccessUpdate, DoorFile
 
 
 class RandomCheer(object):
@@ -18,9 +18,9 @@ class SadCheer(RandomCheer):
             'Mist! :(', 'Scheibenkleister :(']
 
 
-def test(day):
-  tested_mod = DoorSolutionModuleLoader(day).load()
-  tester = DoorTesterModuleLoader(day).load()
+def test(door):
+  tester = door.test.module()
+  tested_mod = door.solution.module()
 
   if tester is None:
     print('Huch, irgendwas ist schief gelaufen!')
@@ -29,14 +29,14 @@ def test(day):
     # return
 
   if tested_mod is None:
-    print('Huch, es gibt noch gar keine Lösung zum Türchen {}!'.format(day))
-    print('Starte `python advent.py show {}` um dir das Türchen anzeigen zu lassen :)'.format(day))
+    print('Huch, es gibt noch gar keine Lösung zum Türchen {}!'.format(door.day))
+    print('Starte `python advent.py show {}` um dir das Türchen anzeigen zu lassen :)'.format(door.day))
     return
 
   if tester.test(tested_mod):
-    DoorSuccessUpdate(day).update()
+    DoorSuccessUpdate(door.day).update()
     print(HappyCheer().cheer())
-    print('Tests bestanden, du hast das Türchen Nummer {} gelöst :)!'.format(day))
+    print('Tests bestanden, du hast das Türchen Nummer {} gelöst :)!'.format(door.day))
   else:
     print(SadCheer().cheer())
     print('Tests nicht bestanden, da musst du nochmal ran!')
