@@ -1,9 +1,10 @@
-from os import path
-
 import enum
 import importlib.util
 import json
 import shutil
+
+from os import path
+from urllib import request
 
 
 TEMPLATES_BASE_PATH = 'doors'
@@ -40,6 +41,24 @@ class DoorSuccessUpdate(object):
 
     with open(p, 'w') as f:
       json.dump(stat, f)
+
+
+class HttpDownloadFile(object):
+  def __init__(self, url, dest):
+    self.url = url
+    self.dest = dest
+
+  def get(self):
+    try:
+      with request.urlopen(self.url) as dl:
+        if dl.code == 200:
+          with open(self.dest, 'wb') as f:
+            shutil.copyfileobj(dl, f)
+            return True
+
+        return False
+    except Exception as e:
+      return False
 
 
 class DoorFile(object):

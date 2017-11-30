@@ -20,6 +20,9 @@ class DoorInfoSplit(object):
 
 
 class Door(object):
+  class CouldNotLoad(Exception):
+    pass
+
   def __init__(self, day):
     self.day = day
     self.done = DoorSuccessReader(day).read()
@@ -41,10 +44,18 @@ class Door(object):
     return self.template.exists() and self.test.exists()
 
   def load(self):
-    self.template.load_from(template_url)
-    self.test.load_from(test_url)
+    url = 'http://raw.githubusercontent.com/weltoph/buk-tools/master/Makefile'
+    template_url = url
+    test_url = url
+    template_loaded = self.template.load_from(template_url)
+    test_loaded = self.test.load_from(test_url)
+    return template_loaded and test_loaded
 
   def show(self):
+    if not self.is_loaded():
+      if not self.load():
+        raise self.CouldNotLoad()
+
     self.template.copy_to(self.solution)
     return self.solution
 
