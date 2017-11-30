@@ -51,13 +51,13 @@ def parse_args(args):
     except ValueError:
       day = dates.today()
       try:
-        cmd = Command(args[1])
+        cmd = Command(args[1].lower())
       except:
         raise InvalidArgs()
   
   if nargs == 3:
     try:
-      cmd = Command(args[1])
+      cmd = Command(args[1].lower())
       day = int(args[2])
     except:
       raise InvalidArgs()
