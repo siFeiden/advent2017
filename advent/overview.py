@@ -8,7 +8,7 @@ TREE_WIDTH = 23
 TREE_PADDING = 4
 
 def show():
-  with open('tree') as f:
+  with open('advent/tree') as f:
     today = dates.today()
 
     row, cols = os.popen('stty size', 'r').read().split()
