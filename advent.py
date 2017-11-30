@@ -83,7 +83,17 @@ def main():
       print('Das Türchen findest du wie vorher unter {} :)'.format(where.file_path))
 
   except InvalidArgs:
-    print('usage')
+    print("""Usage:
+  Run `python advent.py` to get an overview of all days
+
+  Run `python advent.py show 2` to show the task for day 2.
+      Change the number for other days ;)
+
+  Run `python advent.py test 2` to test your solution for day 2.
+
+  Run `python advent.py reset 2` to reset your solution for day 2.
+      You probably don't need this :D
+""")
   except DayCheckFailed:
     print('Na na na!\nNicht so neugierig, das ist noch nicht dran!')
 
