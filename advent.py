@@ -5,6 +5,7 @@ from advent import dates
 from advent import overview
 from advent import show
 from advent import test
+from advent import update
 
 
 INVALID_DAY = -1
@@ -14,6 +15,7 @@ class Command(enum.Enum):
   Overview = 'overview'
   Show = 'show'
   Test = 'test'
+  Update = 'update'
 
 
 class Overview(object):
@@ -71,6 +73,8 @@ if __name__ == '__main__':
       show.present(day)
     elif cmd == Command.Test:
       test.test(day)
+    elif cmd == Command.Update:
+      update.load()
   except InvalidArgs:
     print('usage')
   except DayCheckFailed:
