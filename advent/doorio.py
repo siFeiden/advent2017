@@ -12,9 +12,13 @@ BASE_PATH = 'tuerchen'
 
 
 class DoorType(enum.Enum):
-    Template = 'doors/door{}.py'
-    Test = 'doors/test{}.py'
-    Solution = 'tuerchen/tuerchen{}.py'
+  Template = 'doors/door{}.py'
+  Test = 'doors/test{}.py'
+  Solution = 'tuerchen/tuerchen{}.py'
+
+  RemoteTemplate = 'https://raw.githubusercontent.com/siFeiden/advent2017/master/doors/door{}.py'
+  RemoteTest = 'https://raw.githubusercontent.com/siFeiden/advent2017/master/doors/test{}.py'
+
 
 class DoorSuccessReader(object):
   def __init__(self, day):
@@ -50,9 +54,9 @@ class HttpDownloadFile(object):
 
   def get(self):
     try:
-      with request.urlopen(self.url) as dl:
+      with request.urlopen(self.url.file_path) as dl:
         if dl.code == 200:
-          with open(self.dest, 'wb') as f:
+          with open(self.dest.file_path, 'wb') as f:
             shutil.copyfileobj(dl, f)
             return True
 
@@ -71,8 +75,8 @@ class DoorFile(object):
   def exists(self):
     return path.exists(self.file_path)
 
-  def load_from(self, url):
-    return HttpDownloadFile(url, self.file_path).get()
+  def load_from(self, remote_file):
+    return HttpDownloadFile(remote_file, self).get()
 
   def copy_to(self, dest, overwrite=False):
     if overwrite or (not dest.exists()):

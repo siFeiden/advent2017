@@ -30,7 +30,9 @@ class Door(object):
     self.template = DoorFile(day, DoorType.Template)
     self.test = DoorFile(day, DoorType.Test)
     self.solution = DoorFile(day, DoorType.Solution)
+    self.set_title_and_description()
 
+  def set_title_and_description(self):
     if self.template.exists():
       template_module = self.template.module()
       t, d = DoorInfoSplit(template_module.__doc__).split_title_description()
@@ -44,11 +46,12 @@ class Door(object):
     return self.template.exists() and self.test.exists()
 
   def load(self):
-    url = 'http://raw.githubusercontent.com/weltoph/buk-tools/master/Makefile'
-    template_url = url
-    test_url = url
-    template_loaded = self.template.load_from(template_url)
-    test_loaded = self.test.load_from(test_url)
+    remote_template = DoorFile(self.day, DoorType.RemoteTemplate)
+    remote_test = DoorFile(self.day, DoorType.RemoteTest)
+
+    template_loaded = self.template.load_from(remote_template)
+    test_loaded = self.test.load_from(remote_test)
+    self.set_title_and_description()
     return template_loaded and test_loaded
 
   def show(self):
