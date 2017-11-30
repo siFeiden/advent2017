@@ -95,7 +95,8 @@ class DoorFile(object):
 
       self._module = mod
       return mod
-    except Exception:
-      # TODO: notify in case of parsing errors
+    except SyntaxError as se:
+      raise se
+    except IOError as e:
       return None
 
