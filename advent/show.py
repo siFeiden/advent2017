@@ -1,6 +1,8 @@
 from advent.door import Door
+from advent import dates
 
 
+@dates.nosy_wiebke_guard
 def present(door):
   try:
     where = door.show()
@@ -15,7 +17,7 @@ def present(door):
     print('Dann starte `python advent.py test {}`, um deine Lösung zu testen :)'.format(door.day))
   except Door.CouldNotLoad:
     print('Das Türchen kann gerade nicht gezeigt werden.')
-    print('Es wurde noch nicht geladen und die Internetverbindung ist gerade schlecht :(')
+    print('Es wurde noch nicht geladen und vielleicht ist die Internetverbindung gerade schlecht :(')
     print('Versuchs später nochmal! :)')
     return
 

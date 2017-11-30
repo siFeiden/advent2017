@@ -1,6 +1,7 @@
 import random
 
 from advent.doorio import DoorSuccessUpdate, DoorFile
+from advent import dates
 
 
 class Assert(object):
@@ -51,6 +52,7 @@ class SadCheer(RandomCheer):
             'Mist! :(', 'Scheibenkleister :(']
 
 
+@dates.nosy_wiebke_guard
 def test(door):
   tester = door.test.module()
   tested_mod = door.solution.module()

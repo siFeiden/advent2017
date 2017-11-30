@@ -46,9 +46,6 @@ class Test(object):
 class InvalidArgs(Exception):
   pass
 
-class DayCheckFailed(Exception):
-  pass
-
 
 def parse_args(args):
   nargs = len(args)
@@ -95,9 +92,11 @@ def main():
       print('Das Türchen findest du wie vorher unter {} :)'.format(where.file_path))
 
   except InvalidArgs:
-  except DayCheckFailed:
-    print('Na na na!\nNicht so neugierig, das ist noch nicht dran!')
     print(USAGE)
+  except dates.DayCheckFailed as e:
+    print('Na na na!')
+    print('Nicht so neugierig, das ist noch nicht dran!')
+    print('Nur noch {} mal schlafen bis das dran ist :)'.format(e.days_to_go))
 
 
 if __name__ == '__main__':
