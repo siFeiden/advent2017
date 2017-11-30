@@ -8,6 +8,12 @@ TREE_WIDTH = 23
 TREE_PADDING = 4
 
 def show():
+  print('An educational advent calendar')
+  print()
+  print('  Even the title is in English!')
+  print('  We\'re learning to code until Christmas!')
+  print()
+
   with open('advent/tree') as f:
     today = dates.today()
 
