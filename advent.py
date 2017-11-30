@@ -5,7 +5,6 @@ from advent import dates
 from advent import overview
 from advent import show
 from advent import test
-from advent import update
 from advent.door import Door
 
 
@@ -16,7 +15,6 @@ class Command(enum.Enum):
   Overview = 'overview'
   Show = 'show'
   Test = 'test'
-  Update = 'update'
   Reset = 'reset'
 
 
@@ -79,8 +77,6 @@ def main():
       show.present(door)
     elif cmd == Command.Test:
       test.test(door)
-    elif cmd == Command.Update:
-      update.load()
     elif cmd == Command.Reset:
       where = door.reset()
       print('Türchen {} wiederhergestellt!'.format(day))
