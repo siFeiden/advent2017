@@ -64,7 +64,7 @@ def parse_args(args):
 
   return day, cmd
 
-if __name__ == '__main__':
+def main():
   try:
     day, cmd = parse_args(sys.argv)
 
@@ -85,3 +85,6 @@ if __name__ == '__main__':
   except DayCheckFailed:
     print('Na na na!\nNicht so neugierig, das ist noch nicht dran!')
 
+
+if __name__ == '__main__':
+  main()
