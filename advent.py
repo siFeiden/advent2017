@@ -6,6 +6,7 @@ from advent import overview
 from advent import show
 from advent import test
 from advent import update
+from advent.door import Door
 
 
 INVALID_DAY = -1
@@ -69,10 +70,14 @@ if __name__ == '__main__':
 
     if cmd == Command.Overview:
       overview.show()
-    elif cmd == Command.Show:
-      show.present(day)
+      return
+
+    door = Door.for_day(day)
+
+    if cmd == Command.Show:
+      show.present(door)
     elif cmd == Command.Test:
-      test.test(day)
+      test.test(door)
     elif cmd == Command.Update:
       update.load()
   except InvalidArgs:
