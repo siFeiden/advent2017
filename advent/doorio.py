@@ -7,17 +7,17 @@ from os import path
 from urllib import request
 
 
-TEMPLATES_BASE_PATH = 'doors'
+TEMPLATES_BASE_PATH = '.doors'
 BASE_PATH = 'tuerchen'
 
 
 class DoorType(enum.Enum):
-  Template = 'doors/door{}.py'
-  Test = 'doors/test{}.py'
+  Template = '.doors/door{}.py'
+  Test = '.doors/test{}.py'
   Solution = 'tuerchen/tuerchen{}.py'
 
-  RemoteTemplate = 'https://raw.githubusercontent.com/siFeiden/advent2017/master/doors/door{}.py'
-  RemoteTest = 'https://raw.githubusercontent.com/siFeiden/advent2017/master/doors/test{}.py'
+  RemoteTemplate = 'https://raw.githubusercontent.com/siFeiden/advent2017/master/.doors/door{}.py'
+  RemoteTest = 'https://raw.githubusercontent.com/siFeiden/advent2017/master/.doors/test{}.py'
 
 
 class DoorSuccessReader(object):
