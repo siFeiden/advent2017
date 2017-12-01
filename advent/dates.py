@@ -14,7 +14,7 @@ class DayCheckFailed(Exception):
 
 def check_day(day):
   date = datetime.datetime.today()
-  return date.month == 12 and date.day <= date.day
+  return date.month == 12 and day <= date.day
 
 
 def nosy_wiebke_guard(fun):
