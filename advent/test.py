@@ -87,3 +87,5 @@ def test(door):
       print('  Deine Antwort:', actual)
       print()
 
+    print('Versuchs nochmal :)')
+
