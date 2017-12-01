@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from . import dates
 from .door import Door
@@ -17,8 +18,8 @@ def show():
   with open('advent/tree') as f:
     today = dates.today()
 
-    row, cols = os.popen('stty size', 'r').read().split()
-    window_width = int(cols)
+    terminal_size = shutil.get_terminal_size(fallback=(80, 24))
+    window_width = terminal_size.columns
     title_width = window_width - TREE_WIDTH - 2*TREE_PADDING
 
     for day, line in enumerate(f, start=1):
