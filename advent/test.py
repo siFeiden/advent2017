@@ -43,12 +43,12 @@ class RandomCheer(object):
 
 
 class HappyCheer(RandomCheer):
-  cheers = ['Wuhuu!', 'Yeah!', 'Yippie!', 'Yes!', 'Glückwunsch!',
+  cheers = ['Wuhuu!', 'Yeah!', 'Yippie!', 'Yes!', 'Glueckwunsch!',
             'Yihhaa!', 'Yaaaay!']
 
 
 class SadCheer(RandomCheer):
-  cheers = ['Noooo! :(', 'Neiiin! :(', 'Schade! :(', 'Och nöö! :(',
+  cheers = ['Noooo! :(', 'Neiiin! :(', 'Schade! :(', 'Och noeeee! :(',
             'Mist! :(', 'Scheibenkleister :(']
 
 
@@ -64,8 +64,8 @@ def test(door):
     return
 
   if tested_mod is None:
-    print('Huch, es gibt noch gar keine Lösung zum Türchen {}!'.format(door.day))
-    print('Starte `python advent.py show {}` um dir das Türchen anzeigen zu lassen :)'.format(door.day))
+    print('Huch, es gibt noch gar keine Loesung zum Tuerchen {}!'.format(door.day))
+    print('Starte `python advent.py show {}` um dir das Tuerchen anzeigen zu lassen :)'.format(door.day))
     return
 
   asserted = tester.test(tested_mod, Assert)
@@ -73,7 +73,7 @@ def test(door):
   if asserted.passed_all():
     DoorSuccessUpdate(door.day).update()
     print(HappyCheer().cheer(), '{0} / {0} Tests bestanden.'.format(asserted.npassed))
-    print('Damit hast du das Türchen Nummer {} gelöst :)!'.format(door.day))
+    print('Damit hast du das Tuerchen Nummer {} geloest :)!'.format(door.day))
   else:
     print(SadCheer().cheer())
     print(asserted.nfailed, 'Tests nicht bestanden, da musst du nochmal ran!')

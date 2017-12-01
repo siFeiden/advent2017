@@ -88,8 +88,8 @@ def main():
       test.test(door)
     elif cmd == Command.Reset:
       where = door.reset()
-      print('Türchen {} wiederhergestellt!'.format(day))
-      print('Das Türchen findest du wie vorher unter {} :)'.format(where.file_path))
+      print('Tuerchen {} wiederhergestellt!'.format(day))
+      print('Das Tuerchen findest du wie vorher unter {} :)'.format(where.file_path))
 
   except InvalidArgs:
     print(USAGE)
